@@ -1,0 +1,247 @@
+<%- include('Header'); %>
+<div style="margin-top: 10px; margin-left:10px">
+    <h4><b>Configuration</b></h4>
+    <hr width="60%" align="left" />
+</div>
+<div>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="nav-category-tab" data-toggle="tab" href="#nav-category" role="tab" aria-controls="nav-category" aria-selected="true">Category</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="nav-subcategory-tab" data-toggle="tab" href="#nav-subcategory" role="tab" aria-controls="nav-subcategory" aria-selected="false">Sub Category</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="nav-brand-tab" data-toggle="tab" href="#nav-brand" role="tab" aria-controls="nav-brand" aria-selected="false">Brand</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="nav-config-tab" data-toggle="tab" href="#nav-config" role="tab" aria-controls="nav-config" aria-selected="false">Configuration</a>
+          </li>
+      </ul>
+      <!-- Brand Menu -->
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade" id="nav-brand" role="tabpanel" aria-labelledby="nav-brand-tab">
+            <div style="margin: 10px;">
+                <div style="text-align: right;margin-bottom: 3px;">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#addBrandCenter">Add Brand</button>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr><th>S.No</th><th>Brand Name</th><th>Created Date</th><th>Action</th></tr>
+                    </thead>
+                    <tbody id="branddata"></tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Category Menu -->
+        <div class="tab-pane fade  show active" id="nav-category" role="tabpanel" aria-labelledby="nav-category-tab">
+            <div style="margin: 10px;">
+                <div style="text-align: right;margin-bottom: 3px;">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#addCategoryCenter">Add Category</button>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr><th>S.No</th><th>Category Name</th><th>Created Date</th><th>Action</th></tr>
+                    </thead>
+                    <tbody id="categorydata"></tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <!-- SubCategory Menu -->
+        <div class="tab-pane fade" id="nav-subcategory" role="tabpanel" aria-labelledby="nav-subcategory-tab">
+            <div style="margin: 10px;">
+                <div style="text-align: right;margin: 3px;">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#addSubCategoryCenter">Add Sub Category</button>
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr><th>S.No</th><th>Category Name</th><th>Sub Category Name</th><th>Created Date</th><th>Action</th></tr>
+                    </thead>
+                    <tbody id="subcategorydata"></tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Notification Menu -->
+        <div class="tab-pane fade" id="nav-config" role="tabpanel" aria-labelledby="nav-config-tab">
+            <div style="margin:10px">
+                <div style="font-size: 16px; font-weight: 600;">Email Config</div>
+                <div class="row">
+                    <div class="col-sm-3 form-group">
+                        <label>Email ID</label>
+                        <input type="text" class="form-control"/>
+                    </div>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3 form-group">
+                        <label>Password</label>
+                        <input type="text" class="form-control"/>
+                    </div>
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3 form-group">
+                        <button class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+                <hr/>
+            </div>
+        </div>
+      </div>
+
+      <!-- PopUpModals -->
+      <!-- add Category -->
+      <div class="modal fade" id="addCategoryCenter" tabindex="-1" role="dialog" aria-labelledby="addCategoryCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addCategoryLongTitle">Add Category</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Category</label>
+                    <input type="text" class="form-control" id="category"/>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success" onclick="addCategory()">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- add Sub Category -->
+      <div class="modal fade" id="addSubCategoryCenter" tabindex="-1" role="dialog" aria-labelledby="addSubCategoryCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addSubCategoryLongTitle">Add Sub Category</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="categoryDropDownList" class="form-control"></select>
+                </div>
+                <div class="form-group">
+                    <label>Sub Category</label>
+                    <input type="text" class="form-control" id="subcategory"/>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success" onclick="addSubCategory()">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- add Brand -->
+      <div class="modal fade" id="addBrandCenter" tabindex="-1" role="dialog" aria-labelledby="addBrandCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addBrandLongTitle">Add Brand</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Brand Name</label>
+                    <input type="text" class="form-control" id="brandName"/>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-success" onclick="addBrand()">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+<script>
+$(document).ready(function(){
+  getCategoryList()
+  getSubCategoryList()
+  getBrandList()
+});
+
+
+/**
+ * Get Category ,SubCategory, Brand List 
+ */
+function getCategoryList(){
+    $.get('/admin/getCategoryList',function(data,status){
+        var categorydata = ""
+        var categoryDropDownList="<option>Select Category</option>"
+        for(let i =0; i < data.categoryList.length;i++) {
+            categorydata += "<tr><td>"+data.categoryList[i].id+"</td><td>"+data.categoryList[i].category+"</td><td>"+data.categoryList[i].createdAt+"</td><td><button class='btn btn-primary' style='font-size:10px'>Edit</button></td></tr>"
+            categoryDropDownList += "<option value='"+data.categoryList[i].category+"'>"+data.categoryList[i].category+"</option>"
+        }
+        document.getElementById('categorydata').innerHTML = categorydata
+        document.getElementById('categoryDropDownList').innerHTML = categoryDropDownList
+    })
+}
+function getSubCategoryList(){
+    $.get('/admin/getSubCategoryList',function(data,status){
+        var subcategorydata = ""
+        for(let i=0;i<data.subcategorylist.length;i++) {
+            subcategorydata += "<tr><td>"+data.subcategorylist[i].id+"</td><td>"+data.subcategorylist[i].category+"</td><td>"+data.subcategorylist[i].sub_category+"</td><td>"+data.subcategorylist[i].createdAt+"</td><td><button class='btn btn-primary' style='font-size:10px'>Edit</button></td></tr>"
+        }
+        document.getElementById('subcategorydata').innerHTML = subcategorydata
+    })
+}
+function getBrandList(){
+    $.get('/admin/getBrandList',function(data,status){
+        var branddata = ""
+        for(let i=0;i<data.brandList.length;i++) {
+            branddata += "<tr><td>"+data.brandList[i].id+"</td><td>"+data.brandList[i].brand+"</td><td>"+data.brandList[i].createdAt+"</td><td><button class='btn btn-primary' style='font-size:10px'>Edit</button></td></tr>"
+        }
+        document.getElementById('branddata').innerHTML = branddata
+    })
+}
+/**
+ * Add Category , Sub category, brand 
+ */
+function addCategory(){
+    var category = document.getElementById('category').value;
+    if(category === '') {
+        alert('Please Provide all the fields')
+    } else {
+        $.post('/admin/addCategory',{category:category},function(data,status){
+            getCategoryList()
+            $('#addCategoryCenter').modal('hide')
+        })
+    }
+}
+function addSubCategory(){
+    var categoryOption = document.getElementById('categoryDropDownList').value;
+    var subcategory = document.getElementById('subcategory').value;
+    if(categoryOption === 'Select Category' || subcategory === '') {
+        alert('Please provide all the fields')
+    } else {
+        $.post('/admin/addSubCategory',{category: categoryOption,subcategory: subcategory },function(data,status){
+            getSubCategoryList()
+            $('#addSubCategoryCenter').modal('hide')
+        })
+    }
+}
+function addBrand(){
+    var  brand = document.getElementById('brandName').value;
+    if(brand === ''){
+        alert('please provide all the fields')
+    } else {
+        $.post('/admin/addBrand',{brand:brand},function(data,status){
+            getBrandList()
+            brand = ''
+            $('#addBrandCenter').modal('hide')
+        })
+    }
+}
+</script>
+<%- include('Footer'); %>

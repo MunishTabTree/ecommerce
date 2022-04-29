@@ -1,0 +1,57 @@
+<%- include('Header'); %>
+<div style="margin-top: 10px; margin-left:10px">
+    <h4 style="font-weight: bold;">Orders</h4>
+    <hr width="60%" style="color: grey;" align="left"/>
+    <div>
+        <% for (var i =1; i <=5;  i++ ) { %>
+            <div class="order-list">
+                <div class="row">
+                    <div class="col-sm-1">
+                        <img src="https://www.seoclerk.com/pics/319222-1IvI0s1421931178.png" class="rounded-circle" style="width: 100px;" alt="Avatar" />
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div style="font-weight: bold;">Product Name</div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div><b>Order ID :</b> ORD123456</div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div><b>Payment :</b> Cash On Delivery</div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div><b>Status :</b> Ordered</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div>Brand: Brand 1</div>
+                                <div>Category: Category 1</div>
+                                <div>Sub Category: Sub Category 1</div>
+                            </div>
+                            <div class="col-sm-9">
+                                <br/>
+                                <div style="font-weight: bold;">Shipping Location</div>
+                                <div>No 1, That Street, This Area, which city, Tamil Nadu, 601204</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1" style="text-align: center;">
+                        <br/>
+                        <div style="font-weight: bold;font-size: 24px;">Rs. 1200</div>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</div>
+<%- include('Footer'); %>
+
+<style>
+.order-list{
+    margin:15px 2px;
+    padding: 10px;
+    border-bottom: 1px dashed grey;
+}
+</style>

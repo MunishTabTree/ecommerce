@@ -1,0 +1,122 @@
+<%- include('Header'); %>
+<div style="margin-top: 10px;">
+    <span style="margin-left: 10px;"><a href="/admin/product" style="text-decoration: none;color:blue;">Product</a></span> <span style="color: grey;">></span> <span style="color: blue;">Add Product</span>
+    <hr width="60%" style="color: grey;" align="left"/>
+</div>
+<div style="margin:10px">
+    <div class="row">
+        <div class="col-md-3 form-group">
+            <label>Product Name</label>
+            <input type="text" class="form-control" id="product_name"/>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-7 form-group">
+            <label>Product Description</label>
+            <input type="text" class="form-control" id="product_description">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 form-group">
+            <label>Category</label>
+            <select class="form-control" id="categoryDropDownList"></select>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-3 form-group">
+            <label>Sub Category</label>
+            <select class="form-control" id="subCategoryDropDownList"></select>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-3 form-group">
+            <label>Brand Name</label>
+            <select class="form-control" id="brandDropDownList"></select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 form-group">
+            <label>Cost</label>
+            <input type="text" class="form-control" id="cost"/>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-3 form-group">
+            <label>Product Image</label>
+            <input type="file" class="form-control" id="product_image"/>
+        </div>
+    </div>
+    <br/>
+    <button class="btn btn-primary" onclick="addProduct()">Add</button>
+</div>
+
+
+<script>
+$(document).ready(function(){
+  getCategoryList()
+  getSubCategoryList()
+  getBrandList()
+});
+/**
+ * Get Category ,SubCategory, Brand List 
+ */
+function getCategoryList(){
+    $.get('/admin/getCategoryList',function(data,status){
+        var categoryDropDownList="<option>Select Category</option>"
+        for(let i =0; i < data.categoryList.length;i++) {
+            categoryDropDownList += "<option value='"+data.categoryList[i].category+"'>"+data.categoryList[i].category+"</option>"
+        }
+        document.getElementById('categoryDropDownList').innerHTML = categoryDropDownList
+    })
+}
+function getSubCategoryList(){
+    $.get('/admin/getSubCategoryList',function(data,status){
+        var subcategorydata = "<option>Select Sub Category</option>"
+        for(let i=0;i<data.subcategorylist.length;i++) {
+            subcategorydata += "<option value='"+data.subcategorylist[i].sub_category+"'>"+data.subcategorylist[i].sub_category+"</option>"
+        }
+        document.getElementById('subCategoryDropDownList').innerHTML = subcategorydata
+    })
+}
+function getBrandList(){
+    $.get('/admin/getBrandList',function(data,status){
+        var branddata = "<option>Select Brand</option>"
+        for(let i=0;i<data.brandList.length;i++) {
+            branddata += "<option value='"+data.brandList[i].brand+"'>"+data.brandList[i].brand+"</option>"
+        }
+        document.getElementById('brandDropDownList').innerHTML = branddata
+    })
+}
+function addProduct(){
+    var product_name = document.getElementById('product_name').value;
+    var product_description = document.getElementById('product_description').value;
+    var cost = document.getElementById('cost').value;
+    var category = document.getElementById('categoryDropDownList').value;
+    var sub_category = document.getElementById('subCategoryDropDownList').value;
+    var brand = document.getElementById('brandDropDownList').value;
+    if(product_name === '' || product_description === '' || cost === '' || category === 'Select Category' || sub_category === 'Select Sub Category' || brand === 'Select Brand') {
+        alert('Please provide all the fields')
+    } else {
+        var formData = new FormData();
+        formData.append('product_name',product_name)
+        formData.append('product_description',product_description)
+        formData.append('category',category)
+        formData.append('sub_category',sub_category)
+        formData.append('brand',brand)
+        formData.append('cost',cost)
+        formData.append('files',document.getElementById("product_image").files[0])
+        $.ajax({
+            url: '/admin/addProduct', 
+            type: 'POST',
+            enctype: 'multipart/form-data',
+            // Set the transport to use (iframe means to use Bifröst)
+            // and the expected data type (json in this case).
+            dataType: 'json',
+            data:formData,
+            processData: false,
+            contentType: false,
+            }).done(function(){
+            console.log("Success: Files sent!");
+            }).fail(function(){
+            console.log("An error occurred, the files couldn't be sent!");
+            });
+    }
+}
+</script>
+<%- include('Footer'); %>

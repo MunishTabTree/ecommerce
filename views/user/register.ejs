@@ -1,0 +1,44 @@
+<%- include('Header'); %>
+  <section style="margin-top:50px">
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid"
+            alt="Sample image">
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+          <form>
+            <div style="font-weight:bold;font-size:24px;margin-top:20px;margin-bottom:20px">Register</div>
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <input type="email" id="emailAddress" class="form-control form-control-lg"
+                placeholder="Enter a valid email address" />
+              <label class="form-label" for="form3Example3">Email address</label>
+            </div>
+
+            <!-- Mobile input -->
+            <div class="form-outline mb-4">
+              <input type="text" id="mobileNumber" class="form-control form-control-lg"
+                placeholder="Enter a valid mobile" />
+              <label class="form-label" for="form3Example3">Mobile Number</label>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-3">
+              <input type="password" id="password" class="form-control form-control-lg"
+                placeholder="Enter password" />
+              <label class="form-label" for="form3Example4">Password</label>
+            </div>
+
+            <div class="text-center text-lg-start mt-4 pt-2">
+              <button type="button" class="btn btn-primary btn-lg"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;" id="registerButton">Register</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <%- include('Footer'); %>

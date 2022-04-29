@@ -1,0 +1,71 @@
+Model Design
+	- User
+		-> ID
+		-> Username
+		-> Mobile
+		-> Email ID
+		-> Last Login
+		-> Created Date
+		-> Modified Date
+		-> ProfilePic Path
+		-> DOB
+		-> Gender
+	- User Location
+		-> User id
+		-> location id
+		-> Location Name
+		-> Location Type
+		-> Street
+		-> Area
+		-> City
+		-> State
+		-> Pincode
+	- Admin
+		-> ID
+		-> Username
+		-> Password
+		-> Created Date
+		-> Modified Date
+		-> Mail ID
+		-> Mobile
+	- ID Configuration
+		-> ID
+		-> PREFIX
+			* User ID
+			* Admin ID
+			* Order ID
+			* Invoice ID
+			* Location ID
+			* Ticket ID
+	- Category
+		-> 
+	- Products
+	- Product Rating
+		-> User ID
+		-> Rating
+		-> Comments
+		-> Created Date
+	- Shopping Cart
+		-> User ID
+		-> Product ID
+		-> Quantity
+		-> Created Date
+	- Order
+		-> Order ID
+		-> User ID
+		-> Product ID
+		-> Quantity
+		-> Payment Method
+		-> Amount
+		-> Delivery Location ID
+		-> Placed Date
+		-> Delivery Date
+		-> Status
+	- Order Timeline
+		-> Order ID
+		-> Status
+		-> Created Date
+		-> Description(Shows the location where the product is available)
+	- Ticket
+	- User Activity
+	- Admin Activity
